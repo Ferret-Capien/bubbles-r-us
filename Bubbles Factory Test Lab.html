@@ -1,0 +1,76 @@
+<!doctype html> 
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Bubble Factory Test Lab</title>
+		<script>
+			var scores = [60, 50, 60, 58, 54, 54, 58, 50, 52, 54, 48, 69, 34, 55, 51, 52, 44, 51, 69, 64, 66, 55, 52, 61, 46, 31, 57, 52, 44, 18, 41, 53, 55, 61, 51, 44];
+
+			var costs = [.25, .27, .25, .25, .25, .25, .33, .31, .25, .29, .27, .22, .31, .25, .25, .33, .21, .25, .25, .25, .28, .25, .24, .22, .20, .25, .30, .25, .24, .25, .25, .25, .27, .25, .26, .29];
+
+//Refactoring the code to use our new function. Call the new function, set the variable highScore to the result of printAndGetHighScore function:
+			function printAndGetHighScore(scores) {
+				var highScore = 0;
+				var output;
+				for (var i = 0; i < scores.length; i++) {
+					output = "Bubble solution #" + i + " score: " + scores[i];
+					console.log(output);
+				if (scores[i] > highScore) {
+					highScore = scores[i];
+				}
+			}
+			//call the function passing in the scores array. We assign the value it returns to the variable highScore
+			return highScore;
+		}
+			
+//Now to refactor the code below into a function with its appropriate changes...
+
+			function getBestResults(scores, highScore) {
+			//we create a new array with all highest score solutions:
+			var bestSolutions = [];
+			//we iterate through the entire scores array, looking for items with highest score:
+			for (var i = 0; i < scores.length; i++) {
+				//each time through loop, we compare score at index i with highScore, if they are equal, we add index to the bestSolutions array, using push
+				if (scores[i] == highScore) {
+					bestSolutions.push(i);
+				}
+			}
+			return bestSolutions;
+		}
+
+			var highScore = printAndGetHighScore(scores);
+			console.log("Bubbles tests: " + scores.length);
+			console.log("Highest bubble score: " + highScore);
+
+			var bestSolutions = getBestResults(scores, highScore);
+			//we display highest scores using console.log and a string;
+			console.log("Solutions with the highest score: " + bestSolutions);
+
+//Refactoring the code to use our new function. Call the new function, set the variable highScore to the result of printAndGetHighScore function:
+			function getMostCostEffectiveSolution(scores, costs, highscore) {
+				//Start at high cost and lower each time we find lower cost solution
+				var cost = 100;
+				//index of lowest cost solution in index
+				var index;
+				//iterate through the scores array like before
+				for (var i = 0; i < scores.length; i++) {
+					//check to see if the score has the high score
+				if (scores[i] == highScore) {
+					//if it does, we check its cost. Whenever we find lower cost solution, we keep track (its index in the array), and store its cost in the cost variable as the lowest cost so far...
+					if (cost > costs[i]); {
+						index = i;
+						cost = costs[i];
+					}
+				}
+			}
+			//Once loop is complete, index solution with lowest costs is stored in index, so we return that to the code that called the function:
+			return index;
+		}
+		var mostCostEffectiveSolution = getMostCostEffectiveSolution(scores, costs, highScore);
+		//and then display the index (which is the bubble solution #) in the console...
+		console.log("Bubble Solution #" + mostCostEffectiveSolution + " is the most cost effective");
+		</script>
+	</head> 
+	<body>
+	</body>
+</html>
